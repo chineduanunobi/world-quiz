@@ -1,4 +1,4 @@
-import {Button, Container, Grid, styled} from "@mui/material";
+import {Button, Container, Grid, styled, Table, TableCell} from "@mui/material";
 import theme from "../../theme";
 
 export const StyledContainer = styled(Container)({
@@ -23,4 +23,20 @@ export const StyledGrid1 = styled(Grid)({
 
 export const StyledButton = styled(Button)({
     color: "primary",
+})
+
+export const StyledTable = styled(Table)({
+    minWidth: 650,
+    backgroundColor: '#f0f0f0',
+    display: 'flex',
+    flexDirection: 'column',
+})
+
+export const StyledTableCell = styled(TableCell)({
+    fontWeight: 'bold',
+    color: '#333',
+})
+
+export const StyledTableCell2 = styled(TableCell)({
+    color: '#555',
 })
