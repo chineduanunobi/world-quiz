@@ -3,42 +3,30 @@ import theme from "../../theme";
 import map from "../../images/world-map.jpeg";
 import "@fontsource/montez";
 
-
-export const StyledPaper = styled(Paper)({
-    position: "relative",
-    marginTop: theme.spacing(2),
-    backgroundImage: `url(${map})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    padding: theme.spacing(25),
-    alignItems: "center",
-    height: 150,
-});
-
 export const StyledContainer = styled(Container)({
     height: '100vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-});
+})
+
+export const StyledPaper = styled(Paper)({
+    textAlign: 'center',
+    backgroundImage: `url(${map})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    padding: theme.spacing(15),
+    alignItems: "center",
+})
 
 export const StyledTypography = styled(Typography)({
     fontFamily: '"Montez", "cursive"',
-    fontSize: "large",
+    fontSize: "x-large",
     fontWeight: "bold",
     color: "black",
 })
 
-export const StyledGrid = styled(Grid)({
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-
-})
-
 export const StyledButton = styled(Button)({
-    //marginBottom: theme.spacing(2),
-    //alignSelf: "flex-end"
-    //marginTop: theme.spacing(2),
+    marginTop: theme.spacing(5),
 })
+

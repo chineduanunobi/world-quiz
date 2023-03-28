@@ -1,6 +1,6 @@
 import React from "react";
-import {Grid} from "@mui/material";
-import {StyledButton, StyledContainer, StyledGrid, StyledPaper, StyledTypography} from "../../styles/entry";
+import {Box} from "@mui/material";
+import {StyledButton, StyledContainer, StyledPaper, StyledTypography} from "../../styles/entry";
 import {useNavigate} from "react-router-dom";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
@@ -13,19 +13,17 @@ const Entry = () => {
 
     return (
         <StyledContainer maxWidth="md">
-            <StyledPaper>
-                <Grid container spacing={10}>
-                    <StyledGrid item xs={12}>
-                        <StyledTypography> World Countries IQ </StyledTypography>
-                        <StyledTypography> How many countries can you name in 18 minutes? </StyledTypography>
-                        <StyledButton variant="contained" disableElevation
-                                      endIcon={<ChevronRightIcon />}
-                                      type="submit"
-                                      onClick={()=>handleSubmit()}>
-                            Start Quiz
-                        </StyledButton>
-                    </StyledGrid>
-                </Grid>
+            <StyledPaper >
+                <Box mb={8}>
+                    <StyledTypography variant="h4" component="h1" color="black">World Countries IQ</StyledTypography>
+                    <StyledTypography variant="subtitle1" color="black">How many countries can you name in 18 minutes?</StyledTypography>
+                </Box>
+                <StyledButton variant="contained" disableElevation
+                                              endIcon={<ChevronRightIcon />}
+                                              type="submit"
+                                              onClick={()=>handleSubmit()}>
+                                    Start Quiz
+                                </StyledButton>
             </StyledPaper>
         </StyledContainer>
     );

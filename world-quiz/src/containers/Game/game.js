@@ -17,16 +17,13 @@ import {
     StyledGrid,
     StyledGrid1,
     StyledTable,
-    StyledTableCell,
-    StyledTableCell2
+    StyledTableCell4, StyledTableContainer
 } from "../../styles/game";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import {PlayerContext} from "./PlayerContext";
 import countriesData from "../../scripts/countries.json";
 
 const Game = () => {
-
-    // const { counter } = useContext(PlayerContext);
 
     const [score, setScore] = useState(0);
     const [answer, setAnswer] = useState("");
@@ -36,29 +33,18 @@ const Game = () => {
     const [answeredCountries, setAnsweredCountries] = useState([]);
     const { counter, setCounter } = useContext(PlayerContext);
     const [previousCountry, setPreviousCountry] = useState("");
+    const [groupedCountries, setGroupedCountries] = useState({Africa: [],
+        Antarctica: [],
+        Asia: [],
+        Europe: [],
+        "North America": [],
+        Oceania: [],
+        "South America": [],
+    });
 
     useEffect(() => {
         setAnsweredCountries(countriesData);
     }, []);
-
-    const continents = {
-        Africa: [],
-        Antarctica: [],
-        Asia: [],
-        Europe: [],
-        North_America: [],
-        Oceania: [],
-        South_America: [],
-    };
-
-    const groupedCountries = answeredCountries.reduce((accumulator, currentValue) => {
-        if (!accumulator[currentValue.continent]) {
-            accumulator[currentValue.continent] = [];
-        }
-        accumulator[currentValue.continent].push(currentValue.country);
-        return accumulator;
-    }, continents);
-
 
     const handleInputChange = (event) => {
         const {value} = event.target;
@@ -77,11 +63,21 @@ const Game = () => {
                 setHelperText(`${matchingCountry.country} already entered. Enter a new country.`);
             } else {
                 // If the user's answer matches a country, update the current country and reset the answer
-                setCurrentCountry([...answeredCountries, matchingCountry.country]);
+                const updatedAnsweredCountries = [...answeredCountries, matchingCountry.country].sort();
+                setCurrentCountry(updatedAnsweredCountries);
                 setPreviousCountry(matchingCountry.country);
                 setAnswer("");
                 setScore(score + 1); // Update the score
-                setAnsweredCountries([...answeredCountries, matchingCountry.country]);
+                setAnsweredCountries(updatedAnsweredCountries);
+
+                // Update the grouped countries state with the new country
+                const newGroupedCountries = { ...groupedCountries };
+                const continent = matchingCountry.continent;
+                newGroupedCountries[continent] = [
+                    ...newGroupedCountries[continent],
+                    matchingCountry.country,
+                ].sort();
+                setGroupedCountries(newGroupedCountries);
             }
         } else {
             setHelperText("");
@@ -93,10 +89,10 @@ const Game = () => {
         setAnsweredCountries([]);
         setAnswer("");
         setHelperText("");
-        setCounter(1080);
+        setQuizEnded(true);
+        // reload page when "end quiz" button is clicked
+        window.location.reload();
     };
-
-
 
     // maths function to convert seconds to 00:00 format
     function secondsToHms(counter) {
@@ -166,24 +162,26 @@ const Game = () => {
                 </Grid>
             </StyledGrid>
             <Grid>
-                <TableContainer component={Paper}>
-                    <StyledTable>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Continent</TableCell>
-                                <TableCell>Countries</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {Object.keys(groupedCountries).map((continent) => (
-                                <TableRow key={continent}>
-                                    <StyledTableCell2>{continent}</StyledTableCell2>
-                                    <StyledTableCell2>{groupedCountries[continent].sort().join(", ")}</StyledTableCell2>
+                <Grid item>
+                    <StyledTableContainer component={Paper}>
+                        <StyledTable aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell4 align="center">Continent</StyledTableCell4>
+                                    <TableCell align="center">Countries</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </StyledTable>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {Object.keys(groupedCountries).map((continent) => (
+                                    <TableRow key={continent}>
+                                        <StyledTableCell4 align="center">{continent}</StyledTableCell4>
+                                        <TableCell>{groupedCountries[continent].join(", ")}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </StyledTable>
+                    </StyledTableContainer>
+                </Grid>
             </Grid>
         </StyledContainer>
     );
@@ -191,181 +189,3 @@ const Game = () => {
 
 export default Game;
 
-// const Game = () => {
-//
-//     const { counter } = useContext(PlayerContext);
-//
-//     const [score, setScore] = useState(0);
-//     const [answer, setAnswer] = useState("");
-//     const [currentCountry, setCurrentCountry] = useState("");
-//     const [quizEnded, setQuizEnded] = useState(false);
-//     const [answeredCountries, setAnsweredCountries] = useState([]);
-//
-//     const handleInputChange = (event) => {
-//         const {value} = event.target;
-//         setAnswer(value);
-//
-//         // Check if the user's answer matches any country in the JSON data
-//         const matchingCountry = countriesData.find(
-//             (country) => country.country.toLowerCase() === value.toLowerCase()
-//         );
-//         if (matchingCountry) {
-//             if (answeredCountries.includes(matchingCountry.country)) {
-//                 // alert("You've already answered this country!");
-//                 setAnswer("");
-//                 return;
-//             } else {
-//                 // If the user's answer matches a country, update the current country and reset the answer
-//                 setCurrentCountry(matchingCountry.country);
-//                 setAnswer("");
-//                 setScore(score + 1); // Update the score
-//                 setAnsweredCountries([...answeredCountries, matchingCountry.country]);
-//             }}
-//     };
-//
-//     const handleEndQuiz = () => {
-//         setQuizEnded(true);
-//     };
-//
-//     const helperText = answeredCountries.includes(answer)
-//         ? "You've already answered this country!"
-//         : null;
-//
-//     // maths function to convert seconds to 00:00 format
-//     function secondsToHms(counter) {
-//         let d = Number(counter);
-//
-//         // maths logic that returns minutes and seconds
-//         if (d <= 0) {
-//             return "00:00:00";
-//         } else {
-//             let m = Math.floor((d % 3600) / 60);
-//             let s = Math.floor((d % 3600) % 60);
-//
-//             let mDisplay = m <= 9 ? "0" + m + ":" : m + ":";
-//             let sDisplay = s <= 9 ? "0" + s : s;
-//
-//             return mDisplay + sDisplay;
-//         }
-//     };
-//
-//     return (
-//         <StyledContainer maxWidth="md">
-//             <TextField
-//                 id="country"
-//                 label="Enter country here"
-//                 variant="outlined"
-//                 value={answer}
-//                 onChange={handleInputChange}
-//                 placeholder="Enter country here"
-//                 helperText={helperText}
-//                 error={Boolean(helperText)}
-//                 disabled={quizEnded}
-//                 sx={{marginTop: 6}}
-//             />
-//             <p>{currentCountry}</p>
-//             <StyledGrid container>
-//                 <Grid item>
-//                     <Typography>Your current score is: {score}/195</Typography>
-//                 </Grid>
-//                 <StyledGrid1 item>
-//                     <Button item color="secondary">
-//                         {" "}
-//                         <AccessAlarmIcon/> {secondsToHms(counter)}{" "}
-//                     </Button>
-//                 </StyledGrid1>
-//                 <Grid item>
-//                     {!quizEnded && (
-//                         <Button variant="contained" color="primary"
-//                                 onClick={handleEndQuiz}>
-//                             End Quiz
-//                         </Button>
-//                     )}
-//                 </Grid>
-//             </StyledGrid>
-//         </StyledContainer>
-//     );
-// };
-
-// const { counter } = useContext(PlayerContext);
-//
-// const [score, setScore] = useState(0);
-// const [previousAnswers, setPreviousAnswers] = useState([]);
-// const [inputValue, setInputValue] = useState("");
-// const [helperText, setHelperText] = useState("");
-//
-// const handleInputChange = (event) => {
-//     const { value } = event.target;
-//     setInputValue(value);
-//
-//     const matchingCountry = countriesData.find(
-//         (country) => country.country.toLowerCase() === value.toLowerCase()
-//     );
-//
-//     if (matchingCountry) {
-//         if (previousAnswers.includes(matchingCountry.country)) {
-//             setHelperText(`${matchingCountry.country} already entered`);
-//         } else {
-//             setPreviousAnswers([...previousAnswers, matchingCountry.country]);
-//             setScore(score + 1);
-//             setInputValue("");
-//             setHelperText(`Correct! ${matchingCountry.country} is in ${matchingCountry.continent}`);
-//         }
-//     } else {
-//         setHelperText("");
-//     }
-// };
-//
-// const handleEndQuiz = () => {
-//     setScore(0);
-//     setPreviousAnswers([]);
-//     setInputValue("");
-//     setHelperText("");
-// };
-//
-// // maths function to convert seconds to 00:00 format
-// function secondsToHms(counter) {
-//     let d = Number(counter);
-//
-//     // maths logic that returns minutes and seconds
-//     if (d <= 0) {
-//         return "00:00:00";
-//     } else {
-//         let m = Math.floor((d % 3600) / 60);
-//         let s = Math.floor((d % 3600) % 60);
-//
-//         let mDisplay = m <= 9 ? "0" + m + ":" : m + ":";
-//         let sDisplay = s <= 9 ? "0" + s : s;
-//
-//         return mDisplay + sDisplay;
-//     }
-// };
-//
-// return (
-//     <StyledContainer maxWidth="md">
-//         <TextField
-//             label="Enter a country"
-//             variant="outlined"
-//             value={inputValue}
-//             onChange={handleInputChange}
-//             helperText={helperText}
-//             error={Boolean(helperText)}
-//             sx={{marginTop: 6}}
-//         />
-//         <StyledGrid container>
-//             <Grid item>
-//                 <Typography>Your current score is: {score}/195</Typography>
-//             </Grid>
-//             <StyledGrid1 item>
-//                 <Button item color="secondary">
-//                     {" "}
-//                     <AccessAlarmIcon/> {secondsToHms(counter)}{" "}
-//                 </Button>
-//             </StyledGrid1>
-//             <Grid item>
-//                 <Button onClick={handleEndQuiz}>{score === 0 ? "Start Quiz" : "End Quiz"}
-//                 </Button>
-//             </Grid>
-//         </StyledGrid>
-//     </StyledContainer>
-// );
