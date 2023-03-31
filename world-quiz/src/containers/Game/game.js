@@ -3,10 +3,8 @@ import {
     Button,
     Grid,
     Paper,
-    Table,
     TableBody,
     TableCell,
-    TableContainer,
     TableHead,
     TableRow,
     Typography
@@ -110,7 +108,7 @@ const Game = () => {
 
             return mDisplay + sDisplay;
         }
-    };
+    }
 
     // define a function to handle the timer tick
     const handleTimerTick = () => {
@@ -149,9 +147,9 @@ const Game = () => {
                     <Typography>Your current score is: {score}/195</Typography>
                 </Grid>
                 <StyledGrid1 item>
-                    <Button item color="secondary">
+                    <Button item color="secondary" data-testid="count">
                         {" "}
-                        <AccessAlarmIcon/> {secondsToHms(counter)}{" "}
+                        <AccessAlarmIcon /> {secondsToHms(counter)}{" "}
                     </Button>
                 </StyledGrid1>
                 <Grid item>
