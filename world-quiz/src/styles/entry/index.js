@@ -1,4 +1,4 @@
-import {Button, Container, Grid, Paper, styled, Typography} from "@mui/material";
+import {Button, Container, Paper, styled, Typography} from "@mui/material";
 import theme from "../../theme";
 import map from "../../images/world-map.jpeg";
 import "@fontsource/montez";
