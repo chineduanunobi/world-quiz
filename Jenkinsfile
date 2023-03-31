@@ -38,14 +38,14 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          docker.build("countiresiq-image:latest", "-f Dockerfile .")
+          sh 'docker build -t mecat/countiresiq-image .'
         }
       }
     }
     stage('Test') {
       steps {
         script {
-          docker.image("countriesiq-image:latest").inside {
+          docker.image("mecat/countriesiq-image:latest").inside {
             sh "npm test"
           }
         }
