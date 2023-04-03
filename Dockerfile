@@ -11,7 +11,7 @@ COPY . .
 RUN npm install
 
 # Run the build script using Webpack
-RUN npm run build
+RUN npm build
 
 # Install the Jest testing framework
 # RUN npm install --save-dev jest
