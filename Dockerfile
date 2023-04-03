@@ -14,13 +14,13 @@ RUN npm install
 RUN npm run build
 
 # Install the Jest testing framework
-RUN npm install --save-dev jest
+# RUN npm install --save-dev jest
 
 # Expose the application port
 EXPOSE 3000
 
 # Define environment variable
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
 # Start the application
 CMD ["npm", "start"]
