@@ -31,7 +31,6 @@ pipeline {
       steps {
           echo "Cloning the repository..."
           checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-github', url: 'https://github.com/chineduanunobi/world-quiz.git']])
-                    //git branch: 'main', url: 'https://github.com/chineduanunobi/WebServer2.git'
           }
       }
     stage('Build') {
