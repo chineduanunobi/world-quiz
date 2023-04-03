@@ -48,7 +48,4 @@ stage('Create Container') {
                // sh 'docker run -d -p 8081:80 --name server_web1 mecat/server_web'
             }
         }
-    }
-
-  }
-}
+    }}
