@@ -25,9 +25,8 @@
 //   }
 // }
 pipeline {
-  agent any
-
-  stages {
+    agent any
+    stages {
     stage('Clone repository') {
       steps {
           echo "Cloning the repository..."
@@ -38,19 +37,25 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          sh 'docker build -t mecat/countiresiq-image .'
+          sh 'docker build -t mecat/countriesiq-image .'
         }
       }
     }
-    stage('Test') {
+    stage('Create Container') {
       steps {
-        script {
-          docker.image("mecat/countriesiq-image:latest").inside {
-            sh "npm test"
-          }
+         echo 'Creating container...'
+    	    script {
+    	        sh 'docker run --name countriesiq-container -p 8081:80 -d mecat/countriesiq-image'
+                // sh 'docker run -d -p 8081:80 --name server_web1 mecat/server_web'
         }
-      }
-    }
-
-  }
-}
+            }
+                }
+//     stage('Test') {
+//       steps {
+//         script {
+//           docker.image("mecat/countriesiq-image:latest").inside {
+//             sh "npm test"
+//           }
+//         }
+//       }}
+    }}
