@@ -8,6 +8,7 @@ pipeline {
           checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-github', url: 'https://github.com/chineduanunobi/world-quiz.git']])
           }
       }
+
     stage('Build') {
       steps {
         script {
@@ -15,6 +16,14 @@ pipeline {
         }
       }
     }
+
+     stage('Run Tests') {
+            steps {
+              sh 'npm install' // Install project dependencies (if not already installed)
+              sh 'npm test' // Run tests
+            }
+          }
+
     stage('Create Container') {
       steps {
          echo 'Creating container...'
