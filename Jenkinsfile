@@ -23,12 +23,5 @@ pipeline {
         }
             }
                 }
-//     stage('Test') {
-//       steps {
-//         script {
-//           docker.image("mecat/countriesiq-image:latest").inside {
-//             sh "npm test"
-//           }
-//         }
-//       }}
+
     }}
