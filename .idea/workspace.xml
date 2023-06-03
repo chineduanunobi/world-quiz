@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="114e1e70-8f21-4d0a-9be0-825fc8653b4a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/Game.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Game/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Game/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/game/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/game/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/country-iq-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/country-iq-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/country-iq-service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/country-iq-service.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +68,7 @@
       <workItem from="1680298474516" duration="3409000" />
       <workItem from="1680553692019" duration="3258000" />
       <workItem from="1683760908076" duration="4929000" />
-      <workItem from="1685829878355" duration="2867000" />
+      <workItem from="1685829878355" duration="4433000" />
     </task>
     <servers />
   </component>
