@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
 import Game from "./src/containers/Game/game";
 
 describe("Game Component", () => {
@@ -12,6 +13,7 @@ describe("Game Component", () => {
         expect(screen.getByRole("button", { name: "Start Quiz" })).toBeInTheDocument();
         expect(screen.getByTestId("count")).toBeInTheDocument();
         expect(screen.getByRole("table")).toBeInTheDocument();
+
     });
 
     // Add more test cases for different component behaviors

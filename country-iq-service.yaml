@@ -1,0 +1,15 @@
+# React Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-react-service
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: test-react-service
+  type: LoadBalancer
+status:
+  loadBalancer: {}

@@ -1,0 +1,31 @@
+# React Instance
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ciq-react-service
+  labels:
+    app: ciq-react-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ciq-react-service
+  template:
+    metadata:
+      labels:
+        app: ciq-react-service
+    spec:
+      containers:
+        - name: ciq-test-image
+          image: "ciq-image:v.$BUILD_NUMBER" // This will publish to docker hub .. BUILD_NUMBER is dynamic versioning from Jenkins
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+
+---
