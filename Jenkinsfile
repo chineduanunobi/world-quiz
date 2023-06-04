@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                  sh 'docker build --no-cache . -t react-image:v.${BUILD_NUMBER}'
+                  sh 'docker build --no-cache . -t iqworld-image:v.${BUILD_NUMBER}'
                 }
             }
         }
@@ -20,8 +20,8 @@ pipeline {
             steps {
                 echo 'Publishing....'
                 script {
-                    sh "docker tag react-image:v.${BUILD_NUMBER} react-image:v.${BUILD_NUMBER}"
-                    sh "docker push react-image:v.${BUILD_NUMBER}"
+                    sh "docker tag iqworld-image:v.${BUILD_NUMBER} iqworld-image:v.${BUILD_NUMBER}"
+                    sh "docker push iqworld-image:v.${BUILD_NUMBER}"
                 }
             }
         }
