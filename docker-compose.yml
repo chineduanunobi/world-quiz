@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: worldcountries
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mecat/wc-image
+    ports:
+      - 3000:80
+
+
