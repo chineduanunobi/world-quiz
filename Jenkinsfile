@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'ciq-reactapp' // This is my slave node machine I want to run this pipeline on my slave agent
-    }
+    agent any
 
     stages {
         stage('Cloning deployments') {
