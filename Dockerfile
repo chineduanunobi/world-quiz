@@ -18,6 +18,6 @@ COPY --from=build /app/build /usr/share/nginx/html
 # Add your nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Expose the application port
-EXPOSE 80
+EXPOSE 3000
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,29 +1,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ciq-react-service
+  name: country-quiz deployment #The name of the Kubernetes Deployment to be created in the Kubernetes cluster
   labels:
-    app: ciq-react-app
+    app: country-quiz-app
 spec:
-  replicas: 2
+  replicas: 2 #The number of pods to be created in the Kubernetes cluster for the React.js application container
   selector:
     matchLabels:
-      app: ciq-react-service
+      app: country-quiz-app
   template:
     metadata:
       labels:
-        app: ciq-react-service
+        app: country-quiz-app
     spec:
       containers:
-        - name: ciq-test-image
-          image: "ciq-image:v.$BUILD_NUMBER" # This will publish to Docker Hub .. BUILD_NUMBER is dynamic versioning from Jenkins
+        - name: country-quiz-app #The name of the react.js application container
+          image: mecat/country-iq:latest #The Docker image for building the React.js application container
           ports:
-            - containerPort: 80
-          readinessProbe:
-            httpGet:
-              path: /index.html
-              port: 80
-#          initialDelaySeconds: 10
-#          periodSeconds: 10
+            - containerPort: 3000 #The port for the React.js application   container
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: ciq-react-service
+#  labels:
+#    app: ciq-react-app
+#spec:
+#  replicas: 2
+#  selector:
+#    matchLabels:
+#      app: ciq-react-service
+#  template:
+#    metadata:
+#      labels:
+#        app: ciq-react-service
+#    spec:
+#      containers:
+#        - name: ciq-test-image
+#          image: "ciq-image:v.$BUILD_NUMBER" # This will publish to Docker Hub .. BUILD_NUMBER is dynamic versioning from Jenkins
+#          ports:
+#            - containerPort: 80
+#          readinessProbe:
+#            httpGet:
+#              path: /index.html
+#              port: 80
+##          initialDelaySeconds: 10
+##          periodSeconds: 10
 
 

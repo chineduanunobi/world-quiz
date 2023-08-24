@@ -1,18 +1,30 @@
-# React Service
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: ciq-service
-  name: ciq-service
+  name: country-quiz-service #The name of the Kubernetes Service to be created in the Kubernetes cluster
 spec:
-  ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 80
   selector:
-    app: ciq-service
-  type: LoadBalancer
-status:
-  loadBalancer: {}
+    app: country-quiz-app
+  type: LoadBalancer #Type of the Kubernetes Service
+  ports:
+    - protocol: TCP
+      port: 3000 #Service port
+      targetPort: 3000 #The port for the React.js application container
+## React Service
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  labels:
+#    app: ciq-service
+#  name: ciq-service
+#spec:
+#  ports:
+#    - port: 8080
+#      protocol: TCP
+#      targetPort: 80
+#  selector:
+#    app: ciq-service
+#  type: LoadBalancer
+#status:
+#  loadBalancer: {}
 
