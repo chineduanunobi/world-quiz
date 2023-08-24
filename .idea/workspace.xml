@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="114e1e70-8f21-4d0a-9be0-825fc8653b4a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/country-iq-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/country-iq-deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/76cba71632932c261bc417174a1c2d2729c388aec8ba5a7268fd84b015403626.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/default-development/index.pack.old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/rollup/dist/rollup.browser.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/spidey.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +68,7 @@
       <workItem from="1680553692019" duration="3258000" />
       <workItem from="1683760908076" duration="4929000" />
       <workItem from="1685829878355" duration="13457000" />
-      <workItem from="1692914816059" duration="742000" />
+      <workItem from="1692914816059" duration="1408000" />
     </task>
     <servers />
   </component>
