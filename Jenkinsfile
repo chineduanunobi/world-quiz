@@ -30,9 +30,12 @@ pipeline {
            }
       steps{
         script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("latest")
-          }
+                docker.withRegistry( '', registryCredential ) {
+                dockerImage.push()
+                  }
+//           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+//             dockerImage.push("latest")
+//           }
         }
       }
     }
@@ -44,6 +47,12 @@ pipeline {
         }
       }
     }
+
+     stage('Cleaning up') {
+        steps{
+            sh "docker rmi ${env.dockerimagename}"
+        }
+       }
 
   }
 
