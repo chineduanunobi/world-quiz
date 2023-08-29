@@ -15,11 +15,6 @@ pipeline {
          git branch: 'main', credentialsId: 'githubCred', url: 'https://github.com/chineduanunobi/world-quiz.git'
       }
     }
-    stage('Checkout Source') {
-          steps {
-            git 'https://github.com/Bravinsimiyu/jenkins-kubernetes-deployment.git'
-          }
-        }
 
     stage('Build image') {
       steps{
