@@ -12,9 +12,14 @@ pipeline {
     stage('Checkout Source') {
       steps {
          echo 'Checking out && pulling....'
-         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-github', url: 'https://github.com/chineduanunobi/world-quiz.git']])
+         git branch: 'main', credentialsId: 'githubCred', url: 'https://github.com/chineduanunobi/world-quiz.git'
       }
     }
+    stage('Checkout Source') {
+          steps {
+            git 'https://github.com/Bravinsimiyu/jenkins-kubernetes-deployment.git'
+          }
+        }
 
     stage('Build image') {
       steps{
