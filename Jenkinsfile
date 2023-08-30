@@ -19,7 +19,7 @@ pipeline {
 
     stage('Build image') {
       steps{
-        sh 'docker build -t ${env.dockerimagename}:v.${BUILD_NUMBER} .'
+        sh 'docker build -t ${dockerimagename}:v.${BUILD_NUMBER} .'
       }
     }
 
@@ -31,7 +31,7 @@ pipeline {
 
     stage('Pushing Image') {
       steps{
-        sh 'docker push ${env.dockerimagename}:v.${BUILD_NUMBER}'
+        sh 'docker push ${dockerimagename}:v.${BUILD_NUMBER}'
 //           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
 //             dockerImage.push("latest")
 //           }
@@ -48,7 +48,7 @@ pipeline {
 
      stage('Cleaning up') {
         steps{
-            sh "docker rmi ${env.dockerimagename}:v.${BUILD_NUMBER}"
+            sh "docker rmi ${dockerimagename}:v.${BUILD_NUMBER}"
         }
        }
 
