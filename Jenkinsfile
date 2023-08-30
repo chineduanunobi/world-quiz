@@ -3,6 +3,7 @@ pipeline {
   environment {
     dockerimagename = "mecat/country-iq"
     dockerImage = ""
+    DOCKERHUB_CREDENTIALS = credentials('dockerCred')
   }
 
   agent any
@@ -18,25 +19,22 @@ pipeline {
 
     stage('Build image') {
       steps{
-        script {
-          dockerImage = docker.build dockerimagename
-        }
+        sh 'docker build -t ${env.dockerimagename} .'
       }
     }
 
+    stage('Login to DockerHub'){
+        steps{
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        }
+    }
+
     stage('Pushing Image') {
-      environment {
-               registryCredential = 'dockerCred'
-           }
       steps{
-        script {
-                docker.withRegistry( '', registryCredential ) {
-                dockerImage.push()
-                  }
+        sh 'docker push ${env.dockerimagename}'
 //           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
 //             dockerImage.push("latest")
 //           }
-        }
       }
     }
 
