@@ -38,7 +38,7 @@ pipeline {
     stage('Deploying Country-quiz container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: 'country-iq-deployment.yaml', 'country-iq-service.yaml' kubeconfigId: 'k8config')
+          kubernetesDeploy(configs: 'country-iq-deployment.yaml', 'country-iq-service.yaml', kubeconfigId: 'k8config')
         }
       }
     }
